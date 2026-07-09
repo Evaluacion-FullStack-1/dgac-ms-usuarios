@@ -3,13 +3,14 @@ package cl.dgac.usuarios;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 @SpringBootApplication
-@EnableDiscoveryClient
+@EnableEurekaServer      // Levanta el directorio de servicios de fondo
+@EnableDiscoveryClient   // Hace que el propio MS se auto-registre en su directorio
 public class DgacMsUsuariosApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(DgacMsUsuariosApplication.class, args);
     }
-
 }
