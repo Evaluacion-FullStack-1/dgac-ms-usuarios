@@ -20,21 +20,33 @@ spring:
       hibernate:
         format_sql: true
 
-  # Esta es la magia del Gateway que no estaba en tu archivo antiguo
+  # ¡EL MAPA DE RUTAS EXPLÍCITO DEL GATEWAY!
   cloud:
     gateway:
       mvc:
-        discovery:
-          locator:
-            enabled: true 
-            lower-case-service-id: true
+        routes:
+          # --- 1. RUTA PARA PILOTOS ---
+          - id: ruta-pilotos
+            uri: lb://DGAC-MS-PILOTOS # Apunta al nombre en Eureka (Load Balancer)
+            predicates:
+              - Path=/dgac-ms-pilotos/** # Si la URL de entrada tiene esto...
+            filters:
+              - StripPrefix=1 # ...le quito esa primera parte y lo mando al microservicio
+          
+          # Dejo comentada la plantilla para tus próximos microservicios.
+          # ¡Solo tendrás que descomentar y cambiar los nombres cuando los vayas subiendo!
+          # - id: ruta-drones
+          #   uri: lb://DGAC-MS-DRONES
+          #   predicates:
+          #     - Path=/dgac-ms-drones/**
+          #   filters:
+          #     - StripPrefix=1
 
 eureka:
   instance:
     hostname: localhost
     preferIpAddress: true
   client:
-    # Ahora somos el servidor, así que nos auto-registramos
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
