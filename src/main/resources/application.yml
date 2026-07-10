@@ -33,8 +33,15 @@ spring:
             filters:
               - StripPrefix=1 # ...le quito esa primera parte y lo mando al microservicio
           
+          # --- 2. RUTA PARA PLANES DE VUELO (¡NUEVO!) ---
+          - id: ruta-planes-vuelo
+            uri: lb://DGAC-MS-PLANES-VUELO 
+            predicates:
+              - Path=/dgac-ms-planes-vuelo/**
+            filters:
+              - StripPrefix=1
+          
           # Dejo comentada la plantilla para tus próximos microservicios.
-          # ¡Solo tendrás que descomentar y cambiar los nombres cuando los vayas subiendo!
           # - id: ruta-drones
           #   uri: lb://DGAC-MS-DRONES
           #   predicates:
@@ -51,3 +58,4 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: ${EUREKA_URI:http://localhost:8080/eureka/}
+      
