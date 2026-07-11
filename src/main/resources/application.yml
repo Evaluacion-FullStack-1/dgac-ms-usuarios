@@ -49,6 +49,13 @@ spring:
             filters:
               - StripPrefix=1
 
+          - id: ruta-restricciones
+            uri: lb://DGAC-MS-RESTRICCIONES-AEREAS
+            predicates:
+              - Path=/dgac-ms-restricciones-aereas/**
+            filters:
+              - StripPrefix=1
+
 eureka:
   instance:
     hostname: localhost
