@@ -25,7 +25,7 @@ spring:
     gateway:
       mvc:
         routes:
-          # --- 1. RUTA PARA PILOTOS ---
+       
           - id: ruta-pilotos
             uri: lb://DGAC-MS-PILOTOS # Apunta al nombre en Eureka (Load Balancer)
             predicates:
@@ -33,7 +33,7 @@ spring:
             filters:
               - StripPrefix=1 # ...le quito esa primera parte y lo mando al microservicio
           
-          # --- 2. RUTA PARA PLANES DE VUELO (¡NUEVO!) ---
+         
           - id: ruta-planes-vuelo
             uri: lb://DGAC-MS-PLANES-VUELO 
             predicates:
@@ -53,6 +53,13 @@ spring:
             uri: lb://DGAC-MS-RESTRICCIONES-AEREAS
             predicates:
               - Path=/dgac-ms-restricciones-aereas/**
+            filters:
+              - StripPrefix=1
+
+          - id: ruta-empresas
+            uri: lb://DGAC-MS-EMPRESAS-MANDANTES
+            predicates:
+              - Path=/dgac-ms-empresas-mandantes/**
             filters:
               - StripPrefix=1
 
