@@ -62,6 +62,13 @@ spring:
               - Path=/dgac-ms-empresas-mandantes/**
             filters:
               - StripPrefix=1
+          
+          - id: ruta-reportes
+            uri: lb://DGAC-MS-REPORTES
+            predicates:
+              - Path=/dgac-ms-reportes/**
+            filters:
+              - StripPrefix=1
 
 eureka:
   instance:
