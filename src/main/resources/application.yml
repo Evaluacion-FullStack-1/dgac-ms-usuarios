@@ -41,13 +41,13 @@ spring:
             filters:
               - StripPrefix=1
           
-          # Dejo comentada la plantilla para tus próximos microservicios.
-          # - id: ruta-drones
-          #   uri: lb://DGAC-MS-DRONES
-          #   predicates:
-          #     - Path=/dgac-ms-drones/**
-          #   filters:
-          #     - StripPrefix=1
+          
+          - id: ruta-drones
+            uri: lb://DGAC-MS-DRONES
+            predicates:
+              - Path=/dgac-ms-drones/**
+            filters:
+              - StripPrefix=1
 
 eureka:
   instance:
@@ -58,4 +58,3 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: ${EUREKA_URI:http://localhost:8080/eureka/}
-      
