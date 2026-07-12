@@ -41,7 +41,6 @@ spring:
             filters:
               - StripPrefix=1
           
-          
           - id: ruta-drones
             uri: lb://DGAC-MS-DRONES
             predicates:
@@ -74,6 +73,13 @@ spring:
             uri: lb://DGAC-MS-EMPRESAS-PROVEEDORAS
             predicates:
               - Path=/dgac-ms-empresas-proveedoras/**
+            filters:
+              - StripPrefix=1
+
+          - id: ruta-incidencias
+            uri: lb://DGAC-MS-INCIDENCIAS
+            predicates:
+              - Path=/dgac-ms-incidencias/**
             filters:
               - StripPrefix=1
 
