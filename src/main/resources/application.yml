@@ -70,6 +70,13 @@ spring:
             filters:
               - StripPrefix=1
 
+          - id: ruta-empresas-proveedoras
+            uri: lb://DGAC-MS-EMPRESAS-PROVEEDORAS
+            predicates:
+              - Path=/dgac-ms-empresas-proveedoras/**
+            filters:
+              - StripPrefix=1
+
 eureka:
   instance:
     hostname: localhost
