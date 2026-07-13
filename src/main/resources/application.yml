@@ -82,6 +82,13 @@ spring:
               - Path=/dgac-ms-incidencias/**
             filters:
               - StripPrefix=1
+              
+          - id: ruta-seguros
+            uri: lb://DGAC-MS-SEGUROS
+            predicates:
+              - Path=/dgac-ms-seguros/**
+            filters:
+              - StripPrefix=1
 
 eureka:
   instance:
