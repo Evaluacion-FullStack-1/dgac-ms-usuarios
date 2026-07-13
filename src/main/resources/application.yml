@@ -90,6 +90,13 @@ spring:
             filters:
               - StripPrefix=1
 
+          - id: ruta-usuarios
+            uri: lb://DGAC-MS-USUARIOS
+            predicates:
+              - Path=/dgac-ms-usuarios/**
+            filters:
+              - StripPrefix=1
+
 eureka:
   instance:
     hostname: localhost
